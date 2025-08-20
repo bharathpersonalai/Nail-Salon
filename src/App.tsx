@@ -1,4 +1,5 @@
 import React from "react";
+import nailsImage from './assets/nails.jpg';  // Import image from src/assets 
 import {
   Calendar,
   Star,
@@ -399,7 +400,7 @@ Please let me know your availability. Thank you!`;
             <div className="relative">
               <div className="relative overflow-hidden rounded-3xl shadow-2xl">
                 <img
-                  src="src/assets/nails.jpg"
+                  src="src/assets/nails.jpg" // Replace with your image path 
                   alt="Sabita Sunami - Nail Artist"
                   className="w-full h-[600px] object-cover"
                 />

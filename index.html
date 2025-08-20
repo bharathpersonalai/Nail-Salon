@@ -1,6 +1,12 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,4 +16,28 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
+  <script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+</script>
+<script>
+  document.addEventListener("scroll", function () {
+    const aboutSection = document.getElementById('about');
+    const sectionTop = aboutSection.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (sectionTop < windowHeight - 100) {
+      aboutSection.classList.add("opacity-100");
+      aboutSection.classList.remove("opacity-0");
+      aboutSection.classList.add("translate-x-0");
+      aboutSection.classList.remove("translate-x-[-100%]");
+    }
+  });
+</script>
 </html>

@@ -1,22 +1,34 @@
-import React from 'react';
-import { FaWhatsapp } from "react-icons/fa";
-import { Calendar, Star, Heart, Phone, Mail, MapPin, Instagram, MessageCircle, Clock, CheckCircle, X } from 'lucide-react';
+import React from "react";
+import {
+  Calendar,
+  Star,
+  Heart,
+  Phone,
+  Mail,
+  MapPin,
+  Instagram,
+  MessageCircle,
+  Clock,
+  CheckCircle,
+  X,
+} from "lucide-react";
+import { RiWhatsappFill } from "react-icons/ri";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [selectedService, setSelectedService] = React.useState('');
+  const [selectedService, setSelectedService] = React.useState("");
   const [formData, setFormData] = React.useState({
-    fullName: '',
-    phoneNumber: '',
-    email: '',
-    preferredDateTime: '',
-    service: ''
+    fullName: "",
+    phoneNumber: "",
+    email: "",
+    preferredDateTime: "",
+    service: "",
   });
   const [showSuccess, setShowSuccess] = React.useState(false);
 
   const openBookingModal = (serviceName: string) => {
     setSelectedService(serviceName);
-    setFormData(prev => ({ ...prev, service: serviceName }));
+    setFormData((prev) => ({ ...prev, service: serviceName }));
     setIsModalOpen(true);
     setShowSuccess(false);
   };
@@ -24,23 +36,23 @@ function App() {
   const closeModal = () => {
     setIsModalOpen(false);
     setFormData({
-      fullName: '',
-      phoneNumber: '',
-      email: '',
-      preferredDateTime: '',
-      service: ''
+      fullName: "",
+      phoneNumber: "",
+      email: "",
+      preferredDateTime: "",
+      service: "",
     });
     setShowSuccess(false);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Generate WhatsApp message
     const message = `Hi Sabita! I'd like to book an appointment.
 
@@ -49,18 +61,24 @@ function App() {
 • Phone: ${formData.phoneNumber}
 • Email: ${formData.email}
 • Service: ${formData.service}
-${formData.preferredDateTime ? `• Preferred Date/Time: ${formData.preferredDateTime}` : ''}
+${
+  formData.preferredDateTime
+    ? `• Preferred Date/Time: ${formData.preferredDateTime}`
+    : ""
+}
 
 Please let me know your availability. Thank you!`;
 
-    const whatsappUrl = `https://wa.me/35699582362?text=${encodeURIComponent(message)}`;
-    
+    const whatsappUrl = `https://wa.me/35699582362?text=${encodeURIComponent(
+      message
+    )}`;
+
     // Show success message
     setShowSuccess(true);
-    
+
     // Open WhatsApp after a short delay
     setTimeout(() => {
-      window.open(whatsappUrl, '_blank');
+      window.open(whatsappUrl, "_blank");
       closeModal();
     }, 2000);
   };
@@ -70,7 +88,7 @@ Please let me know your availability. Thank you!`;
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image with Overlay */}
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url('https://images.pexels.com/photos/3997379/pexels-photo-3997379.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop')`,
@@ -103,10 +121,10 @@ Please let me know your availability. Thank you!`;
 
           {/* CTA Button */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <button className="group relative px-12 py-4 bg-gradient-to-r from-rose-400 to-pink-500 text-white rounded-full font-semibold text-lg transition-all duration-300 hover:from-rose-500 hover:to-pink-600 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-rose-300/50 min-w-[200px]">
+            <button className="group relative px-12 py-4 bg-gradient-to-r from-rose-400 to-pink-500 text-white rounded-full font-semibold text-lg transition-all duration-300 hover:from-rose-500 hover:to-pink-600 hover:scale-105 hover:shadow-2xl focus:outline-none min-w-[200px]">
               <div className="flex items-center justify-center gap-3">
-                <Calendar className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" />
-                Book Appointment
+                {/* Updated text */}
+                Let's Nail it
               </div>
               <div className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
@@ -128,9 +146,18 @@ Please let me know your availability. Thank you!`;
 
         {/* Decorative Floating Elements */}
         <div className="absolute top-20 left-10 w-2 h-2 bg-rose-300/30 rounded-full animate-pulse"></div>
-        <div className="absolute top-32 right-16 w-3 h-3 bg-pink-300/20 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-32 left-20 w-1.5 h-1.5 bg-rose-200/40 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-20 right-32 w-2.5 h-2.5 bg-pink-200/30 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+        <div
+          className="absolute top-32 right-16 w-3 h-3 bg-pink-300/20 rounded-full animate-pulse"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute bottom-32 left-20 w-1.5 h-1.5 bg-rose-200/40 rounded-full animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute bottom-20 right-32 w-2.5 h-2.5 bg-pink-200/30 rounded-full animate-pulse"
+          style={{ animationDelay: "0.5s" }}
+        ></div>
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
@@ -141,22 +168,29 @@ Please let me know your availability. Thank you!`;
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-rose-50/30">
+      <section
+        id="services"
+        className="py-20 bg-gradient-to-br from-gray-50 to-rose-50/30"
+      >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6">
-              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500 font-normal">Services</span>
+              Our{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500 font-normal">
+                Services
+              </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Professional nail care services brought directly to your home with premium quality and personal attention.
+              Professional nail care services brought directly to your home with
+              premium quality and personal attention.
             </p>
           </div>
 
           {/* Services Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {/* Gel Nail Extension */}
-            <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
+            <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-3 hover:rotate-2 border border-gray-100">
               <div className="flex items-center justify-between mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl flex items-center justify-center">
                   <Star className="w-6 h-6 text-white" />
@@ -166,12 +200,14 @@ Please let me know your availability. Thank you!`;
                   <div className="text-sm text-gray-500">1.5-2 hrs</div>
                 </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Gel Nail Extension</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                Gel Nail Extension
+              </h3>
               <p className="text-gray-600 leading-relaxed">
                 Elegant, glossy, and strong nails — perfect for any occasion.
               </p>
-              <button 
-                onClick={() => openBookingModal('Gel Nail Extension - €35')}
+              <button
+                onClick={() => openBookingModal("Gel Nail Extension - €35")}
                 className="mt-4 w-full bg-gradient-to-r from-rose-500 to-pink-500 text-white py-2 px-4 rounded-lg font-semibold hover:from-rose-600 hover:to-pink-600 transition-all duration-300"
               >
                 Book Now
@@ -179,7 +215,7 @@ Please let me know your availability. Thank you!`;
             </div>
 
             {/* Acrylic Nail Extensions */}
-            <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
+            <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-3 hover:rotate-2 border border-gray-100">
               <div className="flex items-center justify-between mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-pink-400 to-rose-500 rounded-xl flex items-center justify-center">
                   <Heart className="w-6 h-6 text-white" />
@@ -189,12 +225,16 @@ Please let me know your availability. Thank you!`;
                   <div className="text-sm text-gray-500">1.5-2 hrs</div>
                 </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Acrylic Nail Extensions</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                Acrylic Nail Extensions
+              </h3>
               <p className="text-gray-600 leading-relaxed">
                 Versatile and long-lasting. Choose your shape, length, and vibe.
               </p>
-              <button 
-                onClick={() => openBookingModal('Acrylic Nail Extensions - €50')}
+              <button
+                onClick={() =>
+                  openBookingModal("Acrylic Nail Extensions - €50")
+                }
                 className="mt-4 w-full bg-gradient-to-r from-rose-500 to-pink-500 text-white py-2 px-4 rounded-lg font-semibold hover:from-rose-600 hover:to-pink-600 transition-all duration-300"
               >
                 Book Now
@@ -202,22 +242,27 @@ Please let me know your availability. Thank you!`;
             </div>
 
             {/* Nail Art */}
-            <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
+            <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-3 hover:rotate-2 border border-gray-100">
               <div className="flex items-center justify-between mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl flex items-center justify-center">
                   <Star className="w-6 h-6 text-white fill-current" />
                 </div>
                 <div className="text-right">
-                  <div className="text-lg font-bold text-purple-600">Price varies</div>
+                  <div className="text-lg font-bold text-purple-600">
+                    Price varies
+                  </div>
                   <div className="text-sm text-gray-500">10-60+ mins</div>
                 </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Nail Art</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                Nail Art
+              </h3>
               <p className="text-gray-600 leading-relaxed">
-                From minimal to dramatic – match your mood with creative designs.
+                From minimal to dramatic – match your mood with creative
+                designs.
               </p>
-              <button 
-                onClick={() => openBookingModal('Nail Art - Price varies')}
+              <button
+                onClick={() => openBookingModal("Nail Art - Price varies")}
                 className="mt-4 w-full bg-gradient-to-r from-rose-500 to-pink-500 text-white py-2 px-4 rounded-lg font-semibold hover:from-rose-600 hover:to-pink-600 transition-all duration-300"
               >
                 Book Now
@@ -225,7 +270,7 @@ Please let me know your availability. Thank you!`;
             </div>
 
             {/* Manicure */}
-            <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
+            <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-3 hover:rotate-2 border border-gray-100">
               <div className="flex items-center justify-between mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-rose-400 to-pink-400 rounded-xl flex items-center justify-center">
                   <Heart className="w-6 h-6 text-white" />
@@ -235,12 +280,14 @@ Please let me know your availability. Thank you!`;
                   <div className="text-sm text-gray-500">30-45 mins</div>
                 </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Manicure</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                Manicure
+              </h3>
               <p className="text-gray-600 leading-relaxed">
                 Gentle shaping, cuticle care, and a polished finish.
               </p>
-              <button 
-                onClick={() => openBookingModal('Manicure - €20')}
+              <button
+                onClick={() => openBookingModal("Manicure - €20")}
                 className="mt-4 w-full bg-gradient-to-r from-rose-500 to-pink-500 text-white py-2 px-4 rounded-lg font-semibold hover:from-rose-600 hover:to-pink-600 transition-all duration-300"
               >
                 Book Now
@@ -248,7 +295,7 @@ Please let me know your availability. Thank you!`;
             </div>
 
             {/* Pedicure */}
-            <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
+            <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-3 hover:rotate-2 border border-gray-100">
               <div className="flex items-center justify-between mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-pink-400 to-rose-400 rounded-xl flex items-center justify-center">
                   <Star className="w-6 h-6 text-white" />
@@ -258,12 +305,14 @@ Please let me know your availability. Thank you!`;
                   <div className="text-sm text-gray-500">45-60 mins</div>
                 </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Pedicure</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                Pedicure
+              </h3>
               <p className="text-gray-600 leading-relaxed">
                 Smooth feet and beautifully groomed toes.
               </p>
-              <button 
-                onClick={() => openBookingModal('Pedicure - €35')}
+              <button
+                onClick={() => openBookingModal("Pedicure - €35")}
                 className="mt-4 w-full bg-gradient-to-r from-rose-500 to-pink-500 text-white py-2 px-4 rounded-lg font-semibold hover:from-rose-600 hover:to-pink-600 transition-all duration-300"
               >
                 Book Now
@@ -271,7 +320,7 @@ Please let me know your availability. Thank you!`;
             </div>
 
             {/* Gel on Toes */}
-            <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
+            <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-3 hover:rotate-2 border border-gray-100">
               <div className="flex items-center justify-between mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-rose-500 to-pink-400 rounded-xl flex items-center justify-center">
                   <Heart className="w-6 h-6 text-white fill-current" />
@@ -281,12 +330,14 @@ Please let me know your availability. Thank you!`;
                   <div className="text-sm text-gray-500">45-60 mins</div>
                 </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Gel on Toes</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                Gel on Toes
+              </h3>
               <p className="text-gray-600 leading-relaxed">
                 Durable gel finish that stays flawless for weeks.
               </p>
-              <button 
-                onClick={() => openBookingModal('Gel on Toes - €35')}
+              <button
+                onClick={() => openBookingModal("Gel on Toes - €35")}
                 className="mt-4 w-full bg-gradient-to-r from-rose-500 to-pink-500 text-white py-2 px-4 rounded-lg font-semibold hover:from-rose-600 hover:to-pink-600 transition-all duration-300"
               >
                 Book Now
@@ -306,28 +357,37 @@ Please let me know your availability. Thank you!`;
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-white">
+      <section id="about" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Story Content */}
             <div className="space-y-8">
               <div>
                 <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6">
-                  About the <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500 font-normal">Salon</span>
+                  About the{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500 font-normal">
+                    Salon
+                  </span>
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                  Established in April 2024, Nails with Sabee brings luxurious nail care directly to your home. 
-                  No rushing, no waiting — just beautiful nails and a personal touch.
+                  Established in April 2024, Nails with Sabee brings luxurious
+                  nail care directly to your home. No rushing, no waiting — just
+                  beautiful nails and a personal touch.
                 </p>
               </div>
 
               {/* Founder Info */}
               <div className="bg-gradient-to-br from-rose-50 to-pink-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-4">Meet the Artist</h3>
-                <h4 className="text-xl text-rose-600 font-medium mb-4">Sabita Sunami</h4>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                  Meet the Artist
+                </h3>
+                <h4 className="text-xl text-rose-600 font-medium mb-4">
+                  Sabita Sunami
+                </h4>
                 <p className="text-gray-600 leading-relaxed mb-6">
-                  Meet Sabita, a passionate nail artist who treats every set like a canvas. 
-                  Her at-home services combine hygiene, expertise, and a heartfelt touch.
+                  Meet Sabita, a passionate nail artist who treats every set
+                  like a canvas. Her at-home services combine hygiene,
+                  expertise, and a heartfelt touch.
                 </p>
                 <blockquote className="border-l-4 border-rose-300 pl-6 italic text-gray-700 text-lg">
                   "Every nail tells a story."
@@ -338,14 +398,14 @@ Please let me know your availability. Thank you!`;
             {/* Portrait */}
             <div className="relative">
               <div className="relative overflow-hidden rounded-3xl shadow-2xl">
-                <img 
-                  src="https://images.pexels.com/photos/3997379/pexels-photo-3997379.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop"
+                <img
+                  src="src/assets/nails.jpg"
                   alt="Sabita Sunami - Nail Artist"
                   className="w-full h-[600px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
               </div>
-              
+
               {/* Decorative Elements */}
               <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-rose-200 to-pink-200 rounded-full opacity-60 blur-xl"></div>
               <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-br from-pink-200 to-rose-200 rounded-full opacity-40 blur-2xl"></div>
@@ -355,12 +415,15 @@ Please let me know your availability. Thank you!`;
       </section>
 
       {/* Booking Section */}
-      <section className="py-20 bg-white">
+      <section id="booking" className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
           {/* Section Header */}
           <div className="mb-16">
             <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6">
-              Book Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500 font-normal">Appointment</span>
+              Book Your{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500 font-normal">
+                Appointment
+              </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
               Schedule your personalized nail care session at your convenience
@@ -368,22 +431,26 @@ Please let me know your availability. Thank you!`;
           </div>
 
           {/* Booking Options */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* WhatsApp Booking */}
             <div className="group bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border border-green-100 hover:shadow-lg transition-all duration-300">
               <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                {/* <MessageCircle className="w-8 h-8 text-white" />  */} 
-               
+                {/* <MessageCircle className="w-8 h-8 text-white" />  */}
+                <RiWhatsappFill className="w-9 h-9 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">WhatsApp</h3>
-              <p className="text-gray-600 mb-6">Quick and easy booking via WhatsApp message</p>
-              <a 
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                WhatsApp
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Quick and easy booking via WhatsApp message
+              </p>
+              <a
                 href="https://wa.me/35699582362?text=Hi%20Sabita,%20I'd%20like%20to%20book%20an%20appointment%20for%20nail%20services."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-600 transition-colors duration-300"
               >
-                <MessageCircle className="w-4 h-4" />  
+                <RiWhatsappFill className="w-4 h-4" />
                 Message Now
               </a>
             </div>
@@ -393,9 +460,13 @@ Please let me know your availability. Thank you!`;
               <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <Phone className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Phone Call</h3>
-              <p className="text-gray-600 mb-6">Speak directly with Sabita to schedule</p>
-              <a 
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Phone Call
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Speak directly with Sabita to schedule
+              </p>
+              <a
                 href="tel:+35699582362"
                 className="inline-flex items-center gap-2 bg-blue-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors duration-300"
               >
@@ -403,28 +474,19 @@ Please let me know your availability. Thank you!`;
                 Call Now
               </a>
             </div>
-
-            {/* Online Form */}
-            <div className="group bg-gradient-to-br from-rose-50 to-pink-50 rounded-2xl p-8 border border-rose-100 hover:shadow-lg transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-br from-rose-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Calendar className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Online Form</h3>
-              <p className="text-gray-600 mb-6">Fill out your details and preferences</p>
-              <button className="inline-flex items-center gap-2 bg-rose-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-rose-600 transition-colors duration-300">
-                <Calendar className="w-4 h-4" />
-                Book Online
-              </button>
-            </div>
           </div>
 
           {/* Availability Info */}
           <div className="bg-gradient-to-r from-gray-50 to-rose-50/30 rounded-2xl p-8 mb-8">
             <div className="flex items-center justify-center gap-3 mb-4">
               <Clock className="w-6 h-6 text-rose-500" />
-              <h3 className="text-xl font-semibold text-gray-900">Availability</h3>
+              <h3 className="text-xl font-semibold text-gray-900">
+                Availability
+              </h3>
             </div>
-            <p className="text-gray-600 mb-4">Available Monday to Saturday, flexible hours to suit your schedule</p>
+            <p className="text-gray-600 mb-4">
+              Available Monday to Saturday, flexible hours to suit your schedule
+            </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-500">
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-green-500" />
@@ -443,9 +505,13 @@ Please let me know your availability. Thank you!`;
 
           {/* Main CTA */}
           <div className="text-center">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">Schedule Your Appointment Today</h3>
-            <p className="text-gray-600 mb-8">Experience luxury nail care in the comfort of your own home</p>
-            <a 
+            <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+              Schedule Your Appointment Today
+            </h3>
+            <p className="text-gray-600 mb-8">
+              Experience luxury nail care in the comfort of your own home
+            </p>
+            <a
               href="https://wa.me/35699582362?text=Hi%20Sabita,%20I'd%20like%20to%20schedule%20an%20appointment.%20What%20times%20are%20available%20this%20week?"
               target="_blank"
               rel="noopener noreferrer"
@@ -459,15 +525,22 @@ Please let me know your availability. Thank you!`;
       </section>
 
       {/* Contact & Location Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-rose-50/30">
+      <section
+        id="contact"
+        className="py-20 bg-gradient-to-br from-gray-50 to-rose-50/30"
+      >
         <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6">
-              Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500 font-normal">Touch</span>
+              Get in{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500 font-normal">
+                Touch
+              </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Ready to transform your nails? Contact us through your preferred method
+              Ready to transform your nails? Contact us through your preferred
+              method
             </p>
           </div>
 
@@ -475,29 +548,37 @@ Please let me know your availability. Thank you!`;
             {/* Contact Information */}
             <div className="space-y-8">
               <div className="bg-white rounded-2xl p-8 shadow-lg">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-8">Contact Information</h3>
-                
+                <h3 className="text-2xl font-semibold text-gray-900 mb-8">
+                  Contact Information
+                </h3>
+
                 {/* Address */}
                 <div className="flex items-start gap-4 mb-6">
                   <div className="w-12 h-12 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
                     <MapPin className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Service Area</h4>
+                    <h4 className="font-semibold text-gray-900 mb-2">
+                      Service Area
+                    </h4>
                     <p className="text-gray-600">40 Wellington Triq il-Lacci</p>
                     <p className="text-gray-600">San Pawl il-Bahar, Malta</p>
-                    <p className="text-sm text-rose-600 mt-1">Home service available in surrounding areas</p>
+                    <p className="text-sm text-rose-600 mt-1">
+                      Home service available in surrounding areas
+                    </p>
                   </div>
                 </div>
 
                 {/* Phone/WhatsApp */}
                 <div className="flex items-start gap-4 mb-6">
                   <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <MessageCircle className="w-6 h-6 text-white" />
+                    <RiWhatsappFill className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">WhatsApp & Phone</h4>
-                    <a 
+                    <h4 className="font-semibold text-gray-900 mb-2">
+                      WhatsApp & Phone
+                    </h4>
+                    <a
                       href="https://wa.me/35699582362"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -505,7 +586,9 @@ Please let me know your availability. Thank you!`;
                     >
                       +356 99582362
                     </a>
-                    <p className="text-sm text-gray-500 mt-1">Click to message on WhatsApp</p>
+                    <p className="text-sm text-gray-500 mt-1">
+                      Click to message on WhatsApp
+                    </p>
                   </div>
                 </div>
 
@@ -516,13 +599,15 @@ Please let me know your availability. Thank you!`;
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-2">Email</h4>
-                    <a 
+                    <a
                       href="mailto:nsstha7@gmail.com"
                       className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-300"
                     >
                       nsstha7@gmail.com
                     </a>
-                    <p className="text-sm text-gray-500 mt-1">Send us an email anytime</p>
+                    <p className="text-sm text-gray-500 mt-1">
+                      Send us an email anytime
+                    </p>
                   </div>
                 </div>
 
@@ -532,8 +617,10 @@ Please let me know your availability. Thank you!`;
                     <Instagram className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Follow Our Work</h4>
-                    <a 
+                    <h4 className="font-semibold text-gray-900 mb-2">
+                      Follow Our Work
+                    </h4>
+                    <a
                       href="https://instagram.com/nails_withsabee"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -541,7 +628,9 @@ Please let me know your availability. Thank you!`;
                     >
                       @nails_withsabee
                     </a>
-                    <p className="text-sm text-gray-500 mt-1">See our latest nail art creations</p>
+                    <p className="text-sm text-gray-500 mt-1">
+                      See our latest nail art creations
+                    </p>
                   </div>
                 </div>
               </div>
@@ -550,10 +639,14 @@ Please let me know your availability. Thank you!`;
             {/* Map or Additional Info */}
             <div className="space-y-8">
               <div className="bg-white rounded-2xl p-8 shadow-lg">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6">Service Hours</h3>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                  Service Hours
+                </h3>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                    <span className="font-medium text-gray-900">Monday - Friday</span>
+                    <span className="font-medium text-gray-900">
+                      Monday - Friday
+                    </span>
                     <span className="text-gray-600">9:00 AM - 7:00 PM</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
@@ -579,16 +672,16 @@ Please let me know your availability. Thank you!`;
                   Get in touch today and let's create beautiful nails together!
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <a 
+                  <a
                     href="https://wa.me/35699582362?text=Hi%20Sabita,%20I'd%20like%20to%20book%20an%20appointment!"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 bg-white text-rose-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-50 transition-colors duration-300"
                   >
-                    <MessageCircle className="w-4 h-4" />
+                    <RiWhatsappFill className="w-4 h-4" />
                     WhatsApp
                   </a>
-                  <a 
+                  <a
                     href="tel:+35699582362"
                     className="flex items-center justify-center gap-2 bg-white/20 text-white px-6 py-3 rounded-full font-semibold hover:bg-white/30 transition-colors duration-300"
                   >
@@ -609,22 +702,25 @@ Please let me know your availability. Thank you!`;
             {/* Brand */}
             <div className="lg:col-span-2">
               <h3 className="text-2xl font-light mb-4">
-                Nails <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-300 to-pink-300 font-normal">with Sabee</span>
+                Nails{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-300 to-pink-300 font-normal">
+                  with Sabee
+                </span>
               </h3>
               <p className="text-gray-400 mb-6 max-w-md">
-                Professional nail care services brought directly to your home. 
+                Professional nail care services brought directly to your home.
                 Experience luxury, hygiene, and artistry in every session.
               </p>
               <div className="flex gap-4">
-                <a 
+                <a
                   href="https://wa.me/35699582362"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors duration-300"
                 >
-                  <MessageCircle className="w-5 h-5" />
+                  <RiWhatsappFill className="w-5 h-5" />
                 </a>
-                <a 
+                <a
                   href="https://instagram.com/nails_withsabee"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -639,10 +735,38 @@ Please let me know your availability. Thank you!`;
             <div>
               <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#services" className="hover:text-rose-300 transition-colors duration-300">Services</a></li>
-                <li><a href="#about" className="hover:text-rose-300 transition-colors duration-300">About</a></li>
-                <li><a href="#booking" className="hover:text-rose-300 transition-colors duration-300">Book Now</a></li>
-                <li><a href="#contact" className="hover:text-rose-300 transition-colors duration-300">Contact</a></li>
+                <li>
+                  <a
+                    href="#services"
+                    className="hover:text-rose-300 transition-colors duration-300"
+                  >
+                    Services
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#about"
+                    className="hover:text-rose-300 transition-colors duration-300"
+                  >
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#booking"
+                    className="hover:text-rose-300 transition-colors duration-300"
+                  >
+                    Book Now
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#contact"
+                    className="hover:text-rose-300 transition-colors duration-300"
+                  >
+                    Contact
+                  </a>
+                </li>
               </ul>
             </div>
 
@@ -660,12 +784,20 @@ Please let me know your availability. Thank you!`;
 
           {/* Coming Soon Sections */}
           <div className="border-t border-gray-800 pt-8 mb-8">
-            <h4 className="text-lg font-semibold mb-4 text-center">Coming Soon</h4>
+            <h4 className="text-lg font-semibold mb-4 text-center">
+              Coming Soon
+            </h4>
             <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
-              <span className="bg-gray-800 px-4 py-2 rounded-full">Offers & Discounts</span>
+              <span className="bg-gray-800 px-4 py-2 rounded-full">
+                Offers & Discounts
+              </span>
               <span className="bg-gray-800 px-4 py-2 rounded-full">FAQs</span>
-              <span className="bg-gray-800 px-4 py-2 rounded-full">Certifications</span>
-              <span className="bg-gray-800 px-4 py-2 rounded-full">Bridal Packages</span>
+              <span className="bg-gray-800 px-4 py-2 rounded-full">
+                Certifications
+              </span>
+              <span className="bg-gray-800 px-4 py-2 rounded-full">
+                Bridal Packages
+              </span>
             </div>
           </div>
 
@@ -675,13 +807,13 @@ Please let me know your availability. Thank you!`;
               © 2024 Nails with Sabee. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
-              <a 
+              <a
                 href="https://wa.me/35699582362"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-green-600 transition-colors duration-300"
               >
-                <MessageCircle className="w-4 h-4" />
+                <RiWhatsappFill className="w-4 h-4" />
                 WhatsApp
               </a>
             </div>
@@ -695,8 +827,10 @@ Please let me know your availability. Thank you!`;
           <div className="bg-white rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-2xl font-semibold text-gray-900">Book Appointment</h3>
-              <button 
+              <h3 className="text-2xl font-semibold text-gray-900">
+                Book Appointment
+              </h3>
+              <button
                 onClick={closeModal}
                 className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors duration-300"
               >
@@ -712,13 +846,18 @@ Please let me know your availability. Thank you!`;
                     Selected Service
                   </label>
                   <div className="bg-rose-50 border border-rose-200 rounded-xl p-3">
-                    <span className="text-rose-700 font-medium">{selectedService}</span>
+                    <span className="text-rose-700 font-medium">
+                      {selectedService}
+                    </span>
                   </div>
                 </div>
 
                 {/* Full Name */}
                 <div>
-                  <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="fullName"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Full Name *
                   </label>
                   <input
@@ -735,7 +874,10 @@ Please let me know your availability. Thank you!`;
 
                 {/* Phone Number */}
                 <div>
-                  <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="phoneNumber"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Phone Number *
                   </label>
                   <input
@@ -752,7 +894,10 @@ Please let me know your availability. Thank you!`;
 
                 {/* Email Address */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Email Address *
                   </label>
                   <input
@@ -769,7 +914,10 @@ Please let me know your availability. Thank you!`;
 
                 {/* Preferred Date/Time */}
                 <div>
-                  <label htmlFor="preferredDateTime" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="preferredDateTime"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Preferred Date/Time (Optional)
                   </label>
                   <input
@@ -788,7 +936,7 @@ Please let me know your availability. Thank you!`;
                   type="submit"
                   className="w-full bg-gradient-to-r from-rose-500 to-pink-500 text-white py-3 px-6 rounded-xl font-semibold hover:from-rose-600 hover:to-pink-600 transition-all duration-300 flex items-center justify-center gap-2"
                 >
-                  <MessageCircle className="w-5 h-5" />
+                  <RiWhatsappFill className="w-5 h-5" />
                   Send via WhatsApp
                 </button>
               </form>
@@ -798,9 +946,12 @@ Please let me know your availability. Thank you!`;
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-8 h-8 text-green-500" />
                 </div>
-                <h4 className="text-xl font-semibold text-gray-900 mb-2">Booking Details Sent!</h4>
+                <h4 className="text-xl font-semibold text-gray-900 mb-2">
+                  Booking Details Sent!
+                </h4>
                 <p className="text-gray-600 mb-4">
-                  Your booking details were sent! We'll get back to you shortly on WhatsApp.
+                  Your booking details were saved! Now we will redirect to
+                  whatsapp.Thank you!
                 </p>
                 <div className="bg-green-50 border border-green-200 rounded-xl p-4">
                   <p className="text-green-700 text-sm">
@@ -816,4 +967,4 @@ Please let me know your availability. Thank you!`;
   );
 }
 
-export default App; 
+export default App;

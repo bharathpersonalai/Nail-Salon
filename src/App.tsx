@@ -803,19 +803,19 @@ Please let me know your availability. Thank you!`;
           {/* Bottom Bar */}
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm">
-              © 2024 Nails with Sabee. All rights reserved. 
+              © 2024 Nails with Sabee. All rights reserved.
             </p>
             <p className="text-gray-500 text-sm">
-      Designed & Developed by{" "}
-      <a
-        href="https://www.linkedin.com/company/smartgenai-innovations" // replace with your website if ready
-        target="_blank"
-        rel="noopener noreferrer"
-        className="font-semibold hover:text-gray-300 transition-colors"
-      >
-        SmartgenAI Innovations
-      </a>
-    </p>
+              Designed & Developed by{" "}
+              <a
+                href="https://www.linkedin.com/company/smartgenai-innovations" // replace with your website if ready
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-md font-semibold text-white text-center hover:text-gray-300 transition-colors"
+              >
+                SmartgenAI Innovations
+              </a>
+            </p>
             <div className="flex items-center gap-4">
               <a
                 href="https://wa.me/35699582362"

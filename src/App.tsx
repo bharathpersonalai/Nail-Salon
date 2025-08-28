@@ -1,5 +1,5 @@
 import React from "react";
-import nailsImage from './assets/nails.jpg';  // Import image from src/assets 
+import nailsImage from "./assets/nails.jpg"; // Import image from src/assets
 import {
   Calendar,
   Star,
@@ -400,7 +400,7 @@ Please let me know your availability. Thank you!`;
             <div className="relative">
               <div className="relative overflow-hidden rounded-3xl shadow-2xl">
                 <img
-                  src={nailsImage}  // Dynamically use the imported image here
+                  src={nailsImage} // Dynamically use the imported image here
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
               </div>
@@ -803,8 +803,19 @@ Please let me know your availability. Thank you!`;
           {/* Bottom Bar */}
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm">
-              © 2024 Nails with Sabee. All rights reserved.
+              © 2024 Nails with Sabee. All rights reserved. 
             </p>
+            <p className="text-gray-500 text-sm">
+      Designed & Developed by{" "}
+      <a
+        href="https://www.linkedin.com/company/smartgenai-innovations" // replace with your website if ready
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-semibold hover:text-gray-300 transition-colors"
+      >
+        SmartgenAI Innovations
+      </a>
+    </p>
             <div className="flex items-center gap-4">
               <a
                 href="https://wa.me/35699582362"
